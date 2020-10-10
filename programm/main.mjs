@@ -18,6 +18,12 @@ for (let i = 0; i < 9; i++) {
 
 list.print_to_console(';');
 
+list.push_front(69);
+
+list.print_to_console(';');
+
+console.log(list.at(0).value);
+
 console.log(list.isEmpty());
 
 console.log(list.get_size());
