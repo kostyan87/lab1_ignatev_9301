@@ -42,7 +42,7 @@ class DoublyLinkedList {
    }
 
    at(initial_index) {
-      if (initial_index < 0 || initial_index > this.get_size() - 1) {
+      if (initial_index < 0 || initial_index > this.get_size() - 1 || typeof initial_index != 'number') {
          console.log('There is no element with this index in the list');
       } else {
          let listElem = this.head;
@@ -79,16 +79,20 @@ class DoublyLinkedList {
    }
 
    print_to_console(separator) {
-      let listElem = this.head;
-      let listArray = '';
+      if (this.isEmpty()) {
+         console.log('The list is empty');
+      } else {
+         let listElem = this.head;
+         let listArray = '';
 
-      for (let i = 0; i < this.get_size(); i++) {
-         if (i == this.get_size() - 1) listArray = listArray + '[' + listElem.index +']' + listElem.value;
-         else listArray = listArray +'[' + listElem.index +']' + listElem.value + separator;
-         listElem = listElem.next;
+         for (let i = 0; i < this.get_size(); i++) {
+            if (i == this.get_size() - 1) listArray = listArray + '[' + listElem.index + ']' + listElem.value;
+            else listArray = listArray + '[' + listElem.index + ']' + listElem.value + separator;
+            listElem = listElem.next;
+         }
+
+         console.log(listArray);
       }
-
-      console.log(listArray);
    }
 }
 

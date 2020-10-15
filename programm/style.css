@@ -1,0 +1,34 @@
+body {
+   background: #1D1B26;
+   font-family: sans-serif;
+}
+
+#button {
+   display: block;
+   width: 750px;
+   height: 150px;
+   margin: auto;
+   margin-top: 200px;
+   background: white;
+   cursor: pointer;
+   border-radius: 20px;
+   border: 5px solid red;
+   font-size: 40px;
+}
+
+#button2 {
+   display: block;
+   width: 500px;
+   height: 100px;
+   margin: auto;
+   margin-top: 20px;
+   background: yellow;
+   cursor: pointer;
+   border-radius: 15px;
+   border: 5px solid red;
+   font-size: 18px;
+}
+
+a {
+   text-decoration: none;
+}
