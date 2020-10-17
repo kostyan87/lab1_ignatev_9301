@@ -6,25 +6,13 @@ import {
 function start() {
    let list = new DoublyLinkedList();
 
-   list.print_to_console(';');
-
-   for (let i = 0; i < 9; i++) {
-      list.push_back(i);
-   }
+   list.push_back(4);
+   list.push_back(5);
+   list.push_back(6);
 
    list.print_to_console(';');
 
-   list.push_front(69);
-
-   list.print_to_console(';');
-
-   console.log(list.isEmpty());
-
-   console.log(list.get_size());
-
-   for (let i = 0; i < 28; i++) {
-      list.push_front(i);
-   }
+   list.pop_back();
 
    list.print_to_console(';');
 

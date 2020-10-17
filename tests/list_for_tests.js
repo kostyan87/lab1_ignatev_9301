@@ -43,7 +43,7 @@ class DoublyLinkedList {
 
    at(initial_index) {
       if (initial_index < 0 || initial_index > this.get_size() - 1 || typeof initial_index != 'number') {
-         console.log('There is no element with this index in the list');
+         throw 'There is no element with this index in the list';
       } else {
          let listElem = this.head;
          while (listElem.index != initial_index) {

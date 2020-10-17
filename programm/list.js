@@ -43,7 +43,7 @@ class DoublyLinkedList {
 
    at(initial_index) {
       if (initial_index < 0 || initial_index > this.get_size() - 1 || typeof initial_index != 'number') {
-         console.log('There is no element with this index in the list');
+         throw 'There is no element with this index in the list';
       } else {
          let listElem = this.head;
          while (listElem.index != initial_index) {
@@ -92,6 +92,28 @@ class DoublyLinkedList {
          }
 
          console.log(listArray);
+      }
+   }
+
+   pop_back() {
+      if (this.get_size() == 1) {
+         this.head = null;
+         this.tail = null;
+         this.length--;
+      } else {
+         this.tail.previous.next = null;
+         this.tail.previous = this.tail;
+         this.length--;
+      }
+   }
+
+   pop_front() {
+      if (this.get_size() == 1) {
+         this.head = null;
+         this.tail = null;
+         this.length--;
+      } else {
+
       }
    }
 }
