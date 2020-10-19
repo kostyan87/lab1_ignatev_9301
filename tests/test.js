@@ -7,8 +7,6 @@ completedList.push_back(2);
 completedList.push_back(8);
 completedList.push_back(1);
 
-completedList.print_to_console(';');
-
 describe("isEmpty", function () {
 
    it(`Список emptyList пустой`, function () {
@@ -156,5 +154,135 @@ describe("push_front", function () {
       makeTest();
 
    });
+
+});
+
+const newPopFList = new DoublyLinkedList();
+const newPopFUnitList = new DoublyLinkedList();
+
+newPopFList.push_back(3);
+newPopFList.push_back(7);
+newPopFList.push_back(59);
+newPopFList.push_back(4);
+newPopFUnitList.push_back(5);
+
+describe("pop_front", function () {
+
+   describe("Удаляем из списка, где > 1 элементов", function () {
+
+      function makeTest() {
+         newPopFList.pop_front();
+         it(`Значение первого(головы) элемента списка - ${newPopFList.head.value}`, function () {
+            assert.equal(newPopFList.head.value, 7);
+         });
+         it(`Размер списка - ${newPopFList.get_size()}`, function () {
+            assert.equal(newPopFList.get_size(), 3);
+         });
+      }
+
+      makeTest();
+
+   });
+
+   describe("Удаляем из списка, где 1 элемент", function () {
+
+      function makeTest() {
+         newPopFUnitList.pop_front();
+         it(`Значение первого(головы) элемента списка - ${newPopFUnitList.head}`, function () {
+            assert.equal(newPopFUnitList.head, null);
+         });
+         it(`Значение последнего(хвоста) элемента списка - ${newPopFUnitList.tail}`, function () {
+            assert.equal(newPopFUnitList.tail, null);
+         });
+         it(`Размер списка - ${newPopFUnitList.get_size()}`, function () {
+            assert.equal(newPopFUnitList.get_size(), 0);
+         });
+      }
+
+      makeTest();
+
+   });
+
+});
+
+const newPopBList = new DoublyLinkedList();
+const newPopBUnitList = new DoublyLinkedList();
+
+newPopBList.push_back(3);
+newPopBList.push_back(7);
+newPopBList.push_back(59);
+newPopBList.push_back(4);
+newPopBUnitList.push_back(5);
+
+describe("pop_back", function () {
+
+   describe("Удаляем из списка, где > 1 элементов", function () {
+
+      function makeTest() {
+         newPopBList.pop_back();
+         it(`Значение последнего(хвоста) элемента списка - ${newPopBList.tail.value}`, function () {
+            assert.equal(newPopBList.tail.value, 59);
+         });
+         it(`Размер списка - ${newPopBList.get_size()}`, function () {
+            assert.equal(newPopBList.get_size(), 3);
+         });
+      }
+
+      makeTest();
+
+   });
+
+   describe("Удаляем из списка, где 1 элемент", function () {
+
+      function makeTest() {
+         newPopBUnitList.pop_front();
+         it(`Значение первого(головы) элемента списка - ${newPopFUnitList.head}`, function () {
+            assert.equal(newPopBUnitList.head, null);
+         });
+         it(`Значение последнего(хвоста) элемента списка - ${newPopFUnitList.tail}`, function () {
+            assert.equal(newPopBUnitList.tail, null);
+         });
+         it(`Размер списка - ${newPopBUnitList.get_size()}`, function () {
+            assert.equal(newPopBUnitList.get_size(), 0);
+         });
+      }
+
+      makeTest();
+
+   });
+
+});
+
+const insertList = new DoublyLinkedList();
+
+insertList.push_back(4);
+insertList.push_back(5);
+insertList.push_back(78);
+insertList.push_back(645);
+insertList.push_back(25);
+insertList.push_back(63);
+insertList.push_back(6);
+
+describe("insert", function () {
+
+   function makeTest() {
+      it(`Значение последнего(хвоста) элемента списка - ${emptyList2.tail.value}`, function () {
+         assert.equal(emptyList2.tail.value, lastElem);
+      });
+      it(`Значение первого(головы) элемента списка - ${emptyList2.tail.value}`, function () {
+         assert.equal(emptyList2.head.value, lastElem);
+      });
+      it(`Предыдущий(относительно добавленого) элемента списка - null`, function () {
+         assert.equal(emptyList2.tail.previous, null);
+      });
+      it(`Следующий(относительно добавленого) элемента списка - null`, function () {
+         assert.equal(emptyList2.head.next, null);
+      });
+      it(`Размер списка - 1`, function () {
+         assert.equal(emptyList2.get_size(), 1);
+      });
+   }
+
+   makeTest();
 
 });

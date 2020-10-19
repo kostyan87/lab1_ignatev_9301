@@ -25,8 +25,6 @@ class DoublyLinkedList {
 
    push_back(value) {
       let newNode = new Node(value);
-      //newNode.next = this.head;
-      //this.head.previous = newNode;
       if (this.isEmpty()) {
          this.head = newNode;
          this.tail = newNode;
@@ -54,11 +52,21 @@ class DoublyLinkedList {
    }
 
    //increases all indexes by one
-   change_indexes(initial_index) {
+   increases_indexes(initial_index) {
       let listElem = this.at(initial_index).next;
 
       for (let i = initial_index; i < this.get_size() - 1; i++) {
          listElem.index++;
+         listElem = listElem.next;
+      }
+   }
+
+   //reduces all indexes by one
+   reduces_indexes() {
+      let listElem = this.head;
+
+      for (let i = 0; i < this.get_size(); i++) {
+         listElem.index--;
          listElem = listElem.next;
       }
    }
@@ -74,7 +82,7 @@ class DoublyLinkedList {
          newNode.next = this.head;
          this.head = newNode;
          this.length = this.length + 1;
-         this.change_indexes(0);
+         this.increases_indexes(0);
       }
    }
 
@@ -92,6 +100,68 @@ class DoublyLinkedList {
          }
 
          console.log(listArray);
+      }
+   }
+
+   pop_back() {
+      if (this.get_size() == 1) {
+         this.head = null;
+         this.tail = null;
+         this.length--;
+      } else {
+         this.tail.previous.next = null;
+         this.tail = this.tail.previous;
+         this.length--;
+      }
+   }
+
+   pop_front() {
+      if (this.get_size() == 1) {
+         this.head = null;
+         this.tail = null;
+         this.length--;
+      } else {
+         this.head.next.previous = null;
+         this.head = this.head.next;
+         this.length--;
+         this.reduces_indexes();
+      }
+   }
+
+   insert(value, index) {
+      if (this.isEmpty()) {
+         throw 'The list is empty';
+      } else if (index < -1 || index > this.get_size() - 1 || typeof index != 'number') {
+         throw 'There is no element with this index in the list';
+      } else {
+         let newItem = new Node(value);
+
+         if (index == -1) {
+            newItem.previous = null;
+            newItem.next = this.head;
+            this.head.previous = newItem;
+            this.head = newItem;
+            this.length++;
+            newItem.index = 0;
+            this.increases_indexes(newItem.index);
+         } else if (index == this.tail.index) {
+            newItem.previous = this.tail;
+            newItem.next = null;
+            this.tail.next = newItem;
+            this.tail = newItem;
+            this.length++;
+            newItem.index = this.get_size() - 1;
+         } else {
+            let previousItem = this.at(index);
+
+            newItem.next = previousItem.next;
+            newItem.previous = previousItem;
+            previousItem.next.previous = newItem;
+            previousItem.next = newItem;
+            this.length++;
+            newItem.index = previousItem.index + 1;
+            this.increases_indexes(newItem.index);
+         }
       }
    }
 }
