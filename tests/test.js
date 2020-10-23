@@ -266,20 +266,16 @@ insertList.push_back(6);
 describe("insert", function () {
 
    function makeTest() {
-      it(`Значение последнего(хвоста) элемента списка - ${emptyList2.tail.value}`, function () {
-         assert.equal(emptyList2.tail.value, lastElem);
+      insertList.insert(55, 4);
+      let insertElem = insertList.at(5);
+      it(`Значение предыдущего элемента списка(относительно вставленного) - ${insertElem.previous.value}`, function () {
+         assert.equal(insertElem.previous.value, 25);
       });
-      it(`Значение первого(головы) элемента списка - ${emptyList2.tail.value}`, function () {
-         assert.equal(emptyList2.head.value, lastElem);
+      it(`Значение следующего элемента списка(относительно вставленного) - ${insertElem.next.value}`, function () {
+         assert.equal(insertElem.next.value, 63);
       });
-      it(`Предыдущий(относительно добавленого) элемента списка - null`, function () {
-         assert.equal(emptyList2.tail.previous, null);
-      });
-      it(`Следующий(относительно добавленого) элемента списка - null`, function () {
-         assert.equal(emptyList2.head.next, null);
-      });
-      it(`Размер списка - 1`, function () {
-         assert.equal(emptyList2.get_size(), 1);
+      it(`Размер нового списка - 8`, function () {
+         assert.equal(insertList.get_size(), 8);
       });
    }
 
