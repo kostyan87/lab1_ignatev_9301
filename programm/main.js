@@ -6,8 +6,6 @@ import {
 function start() {
    let list = new DoublyLinkedList();
 
-   
-
    console.log('The end of the script');
 
    console.log('______________________________________________________________________');

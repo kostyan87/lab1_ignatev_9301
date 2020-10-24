@@ -282,3 +282,80 @@ describe("insert", function () {
    makeTest();
 
 });
+
+const setList = new DoublyLinkedList();
+
+setList.push_back(44);
+setList.push_back(77);
+setList.push_back(89);
+setList.push_back(15);
+setList.push_back(62);
+setList.push_back(43);
+
+describe("set", function () {
+
+   function makeTest() {
+      let setValue = 55;
+      setList.set(55, 4);
+      let insertElem = insertList.at(5);
+      it(`Значение нового элемента с индексом "4" - ${setList.at(4).value}`, function () {
+         assert.equal(setList.at(4).value, setValue);
+      });
+      it(`Значение следующего элемента списка(относительно добавленного) - ${setList.at(4).next.value}`, function () {
+         assert.equal(setList.at(4).next.value, 43);
+      });
+      it(`Значение предыдущего элемента списка(относительно добавленного) - ${setList.at(4).previous.value}`, function () {
+         assert.equal(setList.at(4).previous.value, 15);
+      });
+   }
+
+   makeTest();
+
+});
+
+const removeList = new DoublyLinkedList();
+
+removeList.push_back(33);
+removeList.push_back(41);
+removeList.push_back(16);
+removeList.push_back(91);
+removeList.push_back(50);
+
+describe("remove", function () {
+
+   function makeTest() {
+      removeList.remove(3);
+      it(`Значение нового элемента с индексом "4" - ${removeList.at(3).value}`, function () {
+         assert.equal(removeList.at(3).value, 50);
+      });
+   }
+
+   makeTest();
+
+});
+
+const clearList = new DoublyLinkedList();
+
+clearList.push_front(7);
+clearList.push_front(7);
+clearList.push_front(7);
+clearList.push_front(7);
+
+describe("clear", function () {
+
+   function makeTest() {
+      clearList.clear();
+      it(`Значение головы списка - ${clearList.head}`, function () {
+         assert.equal(clearList.head, null);
+      });
+      it(`Значение хвоста списка - ${clearList.tail}`, function () {
+         assert.equal(clearList.tail, null);
+      });
+      it(`Размер списка - ${clearList.get_size()}`, function () {
+         assert.equal(clearList.get_size(), 0);
+      });
+   }
+
+   makeTest();
+
+});

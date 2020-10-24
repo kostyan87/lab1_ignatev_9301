@@ -150,21 +150,8 @@ class DoublyLinkedList {
 
          if (index == -1) {
             this.push_front(value);
-            /*newItem.previous = null;
-            newItem.next = this.head;
-            this.head.previous = newItem;
-            this.head = newItem;
-            this.length++;
-            newItem.index = 0;
-            this.increases_indexes(newItem.index);*/
          } else if (index == this.tail.index) {
             this.push_back(value);
-            /*newItem.previous = this.tail;
-            newItem.next = null;
-            this.tail.next = newItem;
-            this.tail = newItem;
-            this.length++;
-            newItem.index = this.get_size() - 1;*/
          } else {
             let previousItem = this.at(index);
 

@@ -62,10 +62,10 @@ class DoublyLinkedList {
    }
 
    //reduces all indexes by one
-   reduces_indexes() {
-      let listElem = this.head;
+   reduces_indexes(index) {
+      let listElem = this.at(index);
 
-      for (let i = 0; i < this.get_size(); i++) {
+      for (let i = index; i < this.get_size() + 1; i++) {
          listElem.index--;
          listElem = listElem.next;
       }
@@ -104,27 +104,39 @@ class DoublyLinkedList {
    }
 
    pop_back() {
-      if (this.get_size() == 1) {
-         this.head = null;
-         this.tail = null;
-         this.length--;
+      if (this.isEmpty()) {
+         throw 'The list is empty';
       } else {
-         this.tail.previous.next = null;
-         this.tail = this.tail.previous;
-         this.length--;
+         if (this.get_size() == 1) {
+            this.head = null;
+            this.tail = null;
+            this.length--;
+         } else {
+            this.tail.previous.next = null;
+            this.tail = this.tail.previous;
+            this.length--;
+         }
       }
    }
 
    pop_front() {
-      if (this.get_size() == 1) {
-         this.head = null;
-         this.tail = null;
-         this.length--;
+      if (this.isEmpty()) {
+         throw 'The list is empty';
       } else {
-         this.head.next.previous = null;
-         this.head = this.head.next;
-         this.length--;
-         this.reduces_indexes();
+         if (this.get_size() == 1) {
+            this.head = null;
+            this.tail = null;
+            this.length--;
+         } else {
+            this.head.next.previous = null;
+            this.head = this.head.next;
+            this.length--;
+            if (this.head.index == this.get_size()) {
+               this.head.index--;
+            } else {
+               this.reduces_indexes(1);
+            }
+         }
       }
    }
 
@@ -137,20 +149,9 @@ class DoublyLinkedList {
          let newItem = new Node(value);
 
          if (index == -1) {
-            newItem.previous = null;
-            newItem.next = this.head;
-            this.head.previous = newItem;
-            this.head = newItem;
-            this.length++;
-            newItem.index = 0;
-            this.increases_indexes(newItem.index);
+            this.push_front(value);
          } else if (index == this.tail.index) {
-            newItem.previous = this.tail;
-            newItem.next = null;
-            this.tail.next = newItem;
-            this.tail = newItem;
-            this.length++;
-            newItem.index = this.get_size() - 1;
+            this.push_back(value);
          } else {
             let previousItem = this.at(index);
 
@@ -161,6 +162,52 @@ class DoublyLinkedList {
             this.length++;
             newItem.index = previousItem.index + 1;
             this.increases_indexes(newItem.index);
+         }
+      }
+   }
+
+   remove(index) {
+      if (this.isEmpty()) {
+         throw 'The list is empty';
+      } else if (index < 0 || index > this.get_size() - 1 || typeof index != 'number') {
+         throw 'There is no element with this index in the list';
+      } else {
+         let removeElem = this.at(index);
+         if (index == 0) {
+            this.pop_front();
+         } else if (index == this.get_size() - 1) {
+            this.pop_back();
+         } else {
+            removeElem.previous.next = removeElem.next;
+            removeElem.next.previous = removeElem.previous;
+            this.length--;
+            if (removeElem.next.index == this.get_size()) {
+               removeElem.next.index--;
+            } else {
+               this.reduces_indexes(removeElem.next.index);
+            }
+         }
+      }
+   }
+
+   set(value, index) {
+      if (this.isEmpty()) {
+         throw 'The list is empty';
+      } else if (index < 0 || index > this.get_size() - 1 || typeof index != 'number') {
+         throw 'There is no element with this index in the list';
+      } else {
+         this.remove(index);
+         this.insert(value, index - 1);
+      }
+   }
+
+   clear() {
+      if (this.isEmpty()) {
+         throw 'The list is empty';
+      } else {
+         const initialListSize = this.get_size();
+         for (let i = 0; i < initialListSize; i++) {
+            this.remove(0);
          }
       }
    }
