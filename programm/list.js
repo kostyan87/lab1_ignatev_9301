@@ -211,6 +211,33 @@ class DoublyLinkedList {
          }
       }
    }
+
+   push_front_list(list) {
+      if (typeof list != 'object') {
+         throw 'Invalid data type';
+      } else {
+         if (list.isEmpty()) {
+            throw 'Added sheet is empty';
+         }
+         if (this.isEmpty()) {
+            this.head = list.head;
+            this.tail = list.tail;
+            this.length = list.length;
+         } else {
+            list.tail.next = this.head;
+            this.head.previous = list.tail;
+            this.head = list.head;
+            this.length = this.length + list.length;
+
+            let changeIndexElem = list.tail.next;
+
+            for (let i = list.tail.index + 1; i < this.get_size(); i++) {
+               changeIndexElem.index = i;
+               changeIndexElem = changeIndexElem.next;
+            }
+         }
+      }
+   }
 }
 
 export {

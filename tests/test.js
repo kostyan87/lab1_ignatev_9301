@@ -359,3 +359,33 @@ describe("clear", function () {
    makeTest();
 
 });
+
+const pushlist = new DoublyLinkedList();
+const pushlist2 = new DoublyLinkedList();
+
+for (let i = 0; i < 4; i++) {
+   pushlist.push_back(i);
+}
+
+for (let i = 4; i < 8; i++) {
+   pushlist2.push_back(i);
+}
+
+describe("push_front_list", function () {
+
+   function makeTest() {
+      pushlist2.push_front_list(pushlist);
+      it(`Значение головы списка - ${pushlist2.head.value}`, function () {
+         assert.equal(pushlist2.head.value, 0);
+      });
+      it(`Значение хвоста списка - ${pushlist2.tail.value}`, function () {
+         assert.equal(pushlist2.tail.value, 7);
+      });
+      it(`Размер списка - ${pushlist2.get_size()}`, function () {
+         assert.equal(pushlist2.get_size(), 8);
+      });
+   }
+
+   makeTest();
+
+});
