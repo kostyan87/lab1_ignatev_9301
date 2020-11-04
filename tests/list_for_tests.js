@@ -219,22 +219,11 @@ class DoublyLinkedList {
          if (list.isEmpty()) {
             throw 'Added sheet is empty';
          }
-         if (this.isEmpty()) {
-            this.head = list.head;
-            this.tail = list.tail;
-            this.length = list.length;
-         } else {
-            list.tail.next = this.head;
-            this.head.previous = list.tail;
-            this.head = list.head;
-            this.length = this.length + list.length;
+         let listElem = list.tail;
 
-            let changeIndexElem = list.tail.next;
-
-            for (let i = list.tail.index + 1; i < this.get_size(); i++) {
-               changeIndexElem.index = i;
-               changeIndexElem = changeIndexElem.next;
-            }
+         for (let i = list.get_size() - 1; i >= 0; i--) {
+            this.push_front(listElem.value);
+            listElem = listElem.previous;
          }
       }
    }

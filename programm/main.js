@@ -19,6 +19,13 @@ function start() {
 
    list2.print_to_console(';');
 
+   list.pop_back();
+   list.pop_front();
+
+   list.print_to_console(';');
+   
+   list2.print_to_console(';');
+
    console.log('The end of the script');
 
    console.log('______________________________________________________________________');
