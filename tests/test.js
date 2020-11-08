@@ -82,20 +82,6 @@ describe("push_back", function () {
 
 });
 
-describe("at", function () {
-
-   it(`Индекс нулевого элемента равен 0`, function () {
-      assert.equal(completedList.at(0).index, 0);
-   });
-   it(`Индекс третьего элемента равен 3`, function () {
-      assert.equal(completedList.at(3).index, 3);
-   });
-   it(`Индекс четвертого элемента равен 4`, function () {
-      assert.equal(completedList.at(4).index, 4);
-   });
-
-});
-
 const newCompletedList = new DoublyLinkedList();
 const newEmptyList = new DoublyLinkedList();
 
